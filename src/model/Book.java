@@ -1,10 +1,12 @@
 package model;
 
-public abstract class Book {
+
+public abstract class Book{
     protected int id;
     protected String name;
     protected String author;
     protected int year;
+//    private Book book1 = new printedBook(1, "To Kill a Mockingbird", "Harper Lee", 1990, "1row", 800);
 
     public Book(int id, String name, String author, int year) {
         this.id = id;
