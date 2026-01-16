@@ -3,29 +3,29 @@ package model;
 
 public abstract class Book{
     protected int id;
-    protected String name;
-    protected String author;
+    protected String title;
     protected int year;
+    protected Author author;
 //    private Book book1 = new printedBook(1, "To Kill a Mockingbird", "Harper Lee", 1990, "1row", 800);
 
-    public Book(int id, String name, String author, int year) {
+    public Book(int id, String name, Author author, int year) {
         this.id = id;
-        this.name = name;
-        this.author = author;
+        this.title = name;
         this.year = year;
+        this.author = author;
     }
     //getters and setters encapsulation
     public int getId() {
         return id;
     }
-    public String getName() {
-        return name;
-    }
-    public String getAuthor() {
-        return author;
+    public String getTitle() {
+        return title;
     }
     public int getYear() {
         return year;
+    }
+    public Author getAuthor() {
+        return author;
     }
 
     public void setId(int id) {
@@ -34,20 +34,20 @@ public abstract class Book{
         }
 
     }
-    public void setName(String name) {
-        if (name != null) {
-            this.name = name;
-
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty"); //validation logic
         }
-    }
-    public void setAuthor(String author) {
-        if (author != null) {
-            this.author = author;
-        }
+        this.title = title;
     }
     public void setYear(int year) {
-        if (year>0) {
-            this.year = year;
+        if (year<0 || year > 2026) {
+            throw new IllegalArgumentException("Invalid year");
+        } this.year = year;
+    }
+    public void setAuthor(Author author) {
+        if (author != null){
+            this.author = author;
         }
     }
 
@@ -57,8 +57,8 @@ public abstract class Book{
     //concrete method
     public void displayInfo() {
         System.out.println("ID: " + id +
-                            "Name: " + name +
-                            "Author: " + author +
+                            "Name: " + title +
+                            "Author: " + "sd" +
                             "Year: " + year);
     }
 

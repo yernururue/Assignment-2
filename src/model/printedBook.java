@@ -2,10 +2,11 @@ package model;
 
 public class printedBook extends Book implements Borrowable{
     private boolean available = true;
-    protected String shelfLocation;
-    protected double weight;
+    private String shelfLocation;
+    private double weight;
 
-    public printedBook(int id, String name, String author, int year, String shelfLocation, double weight) {
+
+    public printedBook(int id, String name, Author author, int year, String shelfLocation, double weight) {
         super(id, name, author, year);
         this.shelfLocation = shelfLocation;
         this.weight = weight;
@@ -40,5 +41,27 @@ public class printedBook extends Book implements Borrowable{
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public String getShelfLocation() {
+        return shelfLocation;
+    }
+
+    public void setShelfLocation(String shelfLocation) {
+        if (shelfLocation == null || shelfLocation.trim().isEmpty()) {
+            throw new IllegalArgumentException("Location cannot be empty.");
+        }
+        this.shelfLocation = shelfLocation;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        if (weight<0) {
+            throw new IllegalArgumentException("Weight cannot be negative.");
+        }
+        this.weight = weight;
     }
 }

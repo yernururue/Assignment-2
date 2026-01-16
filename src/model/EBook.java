@@ -6,7 +6,7 @@ public class EBook extends model.Book implements DigitalAccess{
     private boolean available = true;
     protected double filesize;
     protected String downloadUrl;
-    public EBook(int id, String name, String author, int year, double filesize, String downloadUrl) {
+    public EBook(int id, String name, Author author, int year, double filesize, String downloadUrl) {
         super(id, name, author, year);
         this.downloadUrl = downloadUrl;
         this.filesize = filesize;
@@ -36,5 +36,22 @@ public class EBook extends model.Book implements DigitalAccess{
     @Override
     public double getFileSize() {
         return fileSize;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    @Override
+    public Author getAuthor() {
+        return super.getAuthor();
+    }
+
+    public double getFilesize() {
+        return filesize;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
     }
 }
