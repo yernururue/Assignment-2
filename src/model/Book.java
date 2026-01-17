@@ -6,13 +6,15 @@ public abstract class Book{
     protected String title;
     protected int year;
     protected Author author;
+    protected boolean isbn;
 //    private Book book1 = new printedBook(1, "To Kill a Mockingbird", "Harper Lee", 1990, "1row", 800);
 
-    public Book(int id, String name, Author author, int year) {
+    public Book(int id, String name, Author author, int year, boolean isbn) {
         this.id = id;
         this.title = name;
         this.year = year;
         this.author = author;
+        this.isbn = isbn;
     }
     //getters and setters encapsulation
     public int getId() {
@@ -58,8 +60,9 @@ public abstract class Book{
     public void displayInfo() {
         System.out.println("ID: " + id +
                             "Name: " + title +
-                            "Author: " + "sd" +
-                            "Year: " + year);
+                            "Author: " + author.getName()+
+                            "Year: " + year +
+                            "Uniqueness: " + isbn);
     }
 
 }

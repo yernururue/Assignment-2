@@ -12,6 +12,11 @@ public class Author {
         this.nationality = nationality;
     }
 
+    public void bio() {
+        System.out.println("Name: " + name +
+                            "Year: " + year +
+                            "Nationality" + nationality);
+    }
     public String getName() {
         return name;
     }

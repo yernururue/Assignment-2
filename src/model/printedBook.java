@@ -4,22 +4,24 @@ public class printedBook extends Book implements Borrowable{
     private boolean available = true;
     private String shelfLocation;
     private double weight;
+    private double latefee = 0.5;
 
 
-    public printedBook(int id, String name, Author author, int year, String shelfLocation, double weight) {
-        super(id, name, author, year);
+    public printedBook(int id, String name, Author author, int year, boolean isbn, String shelfLocation, double weight) {
+        super(id, name, author, year, isbn);
         this.shelfLocation = shelfLocation;
         this.weight = weight;
     }
 
     @Override
     public double calculateLateFee(int days) {
-        return 0;
+        if (days <= 0) return 0;
+        return days * latefee;
     }
 
     @Override
     public String getAccessInstructions() {
-        return "";
+        return "Located at: " + shelfLocation;
     }
 
     @Override
@@ -36,7 +38,9 @@ public class printedBook extends Book implements Borrowable{
 
     @Override
     public void returnItem() {
-        available = true;
+        if (!available) {
+            available = true;
+        }
     }
 
     public void setAvailable(boolean available) {
@@ -63,5 +67,13 @@ public class printedBook extends Book implements Borrowable{
             throw new IllegalArgumentException("Weight cannot be negative.");
         }
         this.weight = weight;
+    }
+
+    public double getLatefee() {
+        return latefee;
+    }
+
+    public void setLatefee(double latefee) {
+        this.latefee = latefee;
     }
 }

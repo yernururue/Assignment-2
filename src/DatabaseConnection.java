@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     // These should be private constants
-    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String url = "jdbc:postgresql://localhost:5432/librarydb";
     private static final String user = "postgres";
     private static final String password = "1234";
 
