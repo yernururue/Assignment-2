@@ -1,8 +1,6 @@
 package model;
 
-public class EBook extends model.Book implements DigitalAccess{
-    private String downloadURL;
-    private double fileSize;
+public class EBook extends model.Book implements DigitalAccess, Borrowable{
     private boolean available = true;
     private double filesize;
     private String downloadUrl;
@@ -10,7 +8,7 @@ public class EBook extends model.Book implements DigitalAccess{
 
 
 
-    public EBook(int id, String name, Author author, int year, boolean isbn, double filesize, String downloadUrl) {
+    public EBook(int id, String name, Author author, int year, String isbn, double filesize, String downloadUrl) {
         super(id, name, author, year, isbn);
         this.downloadUrl = downloadUrl;
         this.filesize = filesize;
@@ -35,16 +33,32 @@ public class EBook extends model.Book implements DigitalAccess{
 
     @Override
     public String getDownloadURL() {
-        return downloadURL;
+        return downloadUrl;
     }
 
     @Override
     public double getFileSize() {
-        return fileSize;
+        return filesize;
     }
 
     public boolean isAvailable() {
         return available;
+    }
+
+    @Override
+    public void borrow() {
+        if (!available) {
+            System.out.println("Book is already borrowed");
+            return;
+        }
+        available = false;
+    }
+
+    @Override
+    public void returnItem() {
+        if (!available) {
+            return;
+        }
     }
 
     @Override

@@ -1,21 +1,21 @@
 package model;
 
-
 public abstract class Book{
     protected int id;
     protected String title;
     protected int year;
     protected Author author;
-    protected boolean isbn;
-//    private Book book1 = new printedBook(1, "To Kill a Mockingbird", "Harper Lee", 1990, "1row", 800);
+    protected String isbn;
+    protected String book_type;
 
-    public Book(int id, String name, Author author, int year, boolean isbn) {
+    public Book(int id, String name, Author author, int year, String isbn) {
         this.id = id;
         this.title = name;
         this.year = year;
         this.author = author;
         this.isbn = isbn;
     }
+
     //getters and setters encapsulation
     public int getId() {
         return id;
@@ -29,7 +29,10 @@ public abstract class Book{
     public Author getAuthor() {
         return author;
     }
-
+    public String getIsbn() {return isbn;}
+    public String getBook_type() {
+        return book_type;
+    }
     public void setId(int id) {
         if (id>0) {
             this.id = id;
@@ -48,9 +51,10 @@ public abstract class Book{
         } this.year = year;
     }
     public void setAuthor(Author author) {
-        if (author != null){
-            this.author = author;
+        if (author == null){
+            throw new IllegalArgumentException("Author cannot be null");
         }
+        this.author = author;
     }
 
     //abstract methods

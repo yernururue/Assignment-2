@@ -7,7 +7,7 @@ public class printedBook extends Book implements Borrowable{
     private double latefee = 0.5;
 
 
-    public printedBook(int id, String name, Author author, int year, boolean isbn, String shelfLocation, double weight) {
+    public printedBook(int id, String name, Author author, int year, String isbn, String shelfLocation, double weight) {
         super(id, name, author, year, isbn);
         this.shelfLocation = shelfLocation;
         this.weight = weight;
@@ -33,6 +33,7 @@ public class printedBook extends Book implements Borrowable{
     public void borrow() {
         if (!available) {
             System.out.println("Book is already borrowed.");
+            return;
         } available = false;
     }
 

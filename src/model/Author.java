@@ -3,19 +3,19 @@ package model;
 public class Author {
     private int id;
     private String name;
-    private int year;
+    private int birthYear;
     private String nationality;
-    public Author(int id, String name, int year, String nationality) {
+    public Author(int id, String name, int birthYear, String nationality) {
         this.id = id;
         this.name = name;
-        this.year = year;
+        this.birthYear = birthYear;
         this.nationality = nationality;
     }
 
     public void bio() {
         System.out.println("Name: " + name +
-                            "Year: " + year +
-                            "Nationality" + nationality);
+                            "\nYear: " + birthYear +
+                            "\nNationality: " + nationality);
     }
     public String getName() {
         return name;
@@ -23,8 +23,8 @@ public class Author {
     public int getId() {
         return id;
     }
-    public int getYear() {
-        return year;
+    public int getBirthYear() {
+        return birthYear;
     }
     public String getNationality() {
         return nationality;
@@ -42,10 +42,10 @@ public class Author {
         } this.name = name;
     }
 
-    public void setYear(int year) {
-        if (year <0 || year>2026) {
+    public void setBirthYear(int birthYear) {
+        if (birthYear <0 || birthYear>2026) {
             throw new IllegalArgumentException("Invalid year.");
-        } this.year = year;
+        } this.birthYear = birthYear;
     }
 
     public void setNationality(String nationality) {
