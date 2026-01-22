@@ -1,5 +1,7 @@
 package model;
 
+import exception.InvalidInputException;
+
 public abstract class Book{
     protected int id;
     protected String title;
@@ -56,6 +58,12 @@ public abstract class Book{
         }
         this.author = author;
     }
+    public void setBook_type(String bookType) {
+        if (bookType == null) {
+            throw new IllegalArgumentException("book type cannot be null");
+        }
+        this.book_type = bookType;
+    }
 
     //abstract methods
     public abstract double calculateLateFee(int days);
@@ -63,10 +71,10 @@ public abstract class Book{
     //concrete method
     public void displayInfo() {
         System.out.println("ID: " + id +
-                            "Name: " + title +
-                            "Author: " + author.getName()+
-                            "Year: " + year +
-                            "Uniqueness: " + isbn);
+                            "\nName: " + title +
+                            "\nAuthor: " + author.getName()+
+                            "\nYear: " + year +
+                            "\nUniqueness: " + isbn);
     }
 
 }

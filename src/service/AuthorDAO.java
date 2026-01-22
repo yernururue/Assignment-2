@@ -49,7 +49,7 @@ public class AuthorDAO {
              PreparedStatement pst = conn.prepareStatement(sql);) {
             ResultSet rs = pst.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 int authorId = rs.getInt("id");
                 String name = rs.getString("name");
                 String nationality = rs.getString("nationality");

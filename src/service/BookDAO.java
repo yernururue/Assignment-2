@@ -82,7 +82,6 @@ public class BookDAO {
         String downloadUrl = rs.getString("download_url");
         double fileSize = rs.getDouble("file_size");
 
-        // Get author (you'll need AuthorDAO for this)
         AuthorDAO authorDAO = new AuthorDAO();
         Author author = authorDAO.getAuthorByID(authorId);
 
@@ -128,6 +127,25 @@ public class BookDAO {
 
     }
 
+    public Book getBookByISBN(String isbn) {
+        String sql = "select * from books where isbn = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, isbn);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String bookType = rs.getString("book_type");
+                if ("EBOOK".equals(bookType)) {
+                    return createEBookFromResultSet(rs);
+                } else if ("PRINTED".equals(bookType)) {
+                    return createPrintedBookFromResultSet(rs);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
 
     public void updateBookByID(int id, String newTitle, String newIsbn, int newAuthorId, int newPublishYear, double newFileSize,String newDownloadUrl ,String newShelfLocation, double newWeight) {
         String sql1 = "update table books set title = ?,isbn =?, author_id = ?, publish_year = ?, file_size=?,download_url = ?, shelf_locaion=?, weight = ?  where id = ?";
