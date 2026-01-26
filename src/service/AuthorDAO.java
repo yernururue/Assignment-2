@@ -52,8 +52,9 @@ public class AuthorDAO {
             while (rs.next()) {
                 int authorId = rs.getInt("id");
                 String name = rs.getString("name");
+                int birthyear = rs.getInt("birthyear");
                 String nationality = rs.getString("nationality");
-                Author author = new Author(authorId, name, 0, nationality);
+                Author author = new Author(authorId, name,birthyear , nationality);
                 authors.add(author);
             }
         } catch (SQLException e) {

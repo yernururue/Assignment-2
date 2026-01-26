@@ -4,7 +4,7 @@ create table authors
         primary key,
     name        varchar(255) not null,
     nationality varchar(255) not null,
-    birthyear   integer (birthyear>0 and birthyear<2026)
+    birthyear   integer check (birthyear>0 and birthyear<2026)
 );
 
 alter table authors
@@ -18,7 +18,7 @@ create table books
     isbn           varchar(50) unique,
     author_id      integer
         references authors,
-    publish_year   integer (publish_year>0 and publish_year <=2026),
+    publish_year   integer check (publish_year>0 and publish_year <=2026),
     book_type      varchar(20)  not null,
     download_url   varchar(500),
     file_size      double precision,

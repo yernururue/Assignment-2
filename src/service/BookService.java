@@ -56,6 +56,14 @@ public class BookService {
         Book book = getBookByID(id);
         bookdao.deleteBookById(id);
     }
+    public void updateBook(int id) throws ResourceNotFoundException {
+        Book book = bookdao.getBookByID(id);
+        if (book == null) {
+            throw new ResourceNotFoundException("this book does not exist");
+        }
+    }
+
+
     public List<Book> getAllBooks() {
         return bookdao.getAllBooks();
     }
